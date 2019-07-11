@@ -1,0 +1,70 @@
+version: '2'
+services:
+
+  # MarkLogic 1st Server
+  s00.ml.local:
+    image: aidenlee/centos7-marklogic9
+    container_name: s00.ml.local
+    hostname: "s00.ml.local"
+    expose:
+      - "7997"
+      - "7998"
+      - "7999"
+      - "8000"
+      - "8001"
+      - "8002"
+    ports:
+      - "8000:8000"
+      - "8001:8001"
+      - "8002:8002"
+      - "8020:8020"
+      - "8040:8040"
+    privileged: true
+    command: /sbin/init
+
+  # MarkLogic 2nd Server
+  s01.ml.local:
+    image: aidenlee/centos7-marklogic9
+    container_name: s01.ml.local
+    hostname: "s01.ml.local"
+    expose:
+      - "7997"
+      - "7998"
+      - "7999"
+      - "8000"
+      - "8001"
+      - "8002"
+    ports:
+      - "8100:8000"
+      - "8101:8001"
+      - "8102:8002"
+      - "8120:8020"
+      - "8140:8040"
+    #links:
+    #  - s00.ml.local:s00.ml.local
+    privileged: true
+    command: /sbin/init
+
+  # MarkLogic 3rd Server
+  s02.ml.local:
+    image: aidenlee/centos7-marklogic9
+    container_name: s02.ml.local
+    hostname: "s02.ml.local"
+    expose:
+      - "7997"
+      - "7998"
+      - "7999"
+      - "8000"
+      - "8001"
+      - "8002"
+    ports:
+      - "8200:8000"
+      - "8201:8001"
+      - "8202:8002"
+      - "8220:8020"
+      - "8240:8040"
+    #links:
+    #  - s00.ml.local:s00.ml.local
+    #  - s01.ml.local:s01.ml.local
+    privileged: true
+    command: /sbin/init
